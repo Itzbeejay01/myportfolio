@@ -35,8 +35,8 @@ No build step is required. Tailwind CSS is included via CDN for easy editing.
 
 ## 🌐 Contact
 - Email: ayokanmiomolayo1@gmail.com
-- WhatsApp: https://api.whatsapp.com/message/WY4IVPJUJRB2J1
-- GitHub: [itzbeejay](https://github.com/itzbeejay)
+- WhatsApp: https://wa.me/2349066514347
+- GitHub: [itzbeejay](https://github.com/itzbeejay01)
 - Instagram: [itzbeejay01](https://www.instagram.com/itzbeejay01/?hl=bg)
 
 ---
