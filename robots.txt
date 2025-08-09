@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.omolayoayokanmi.com.ng/sitemap.xml
