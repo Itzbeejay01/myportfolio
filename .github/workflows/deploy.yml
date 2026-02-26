@@ -14,18 +14,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Setup PHP 8.4 + Composer
-      - name: Setup PHP 8.4
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.4"
-          tools: composer:v2
-          extensions: mbstring, bcmath, pdo, mysqli
-          coverage: none
+      # # 2️⃣ Setup PHP 8.4 + Composer
+      # - name: Setup PHP 8.4
+      #   uses: shivammathur/setup-php@v2
+      #   with:
+      #     php-version: "8.4"
+      #     tools: composer:v2
+      #     extensions: mbstring, bcmath, pdo, mysqli
+      #     coverage: none
 
-      # 3️⃣ Install Composer dependencies (PRODUCTION)
-      - name: Install Composer dependencies
-        run: composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction
+      # # 3️⃣ Install Composer dependencies (PRODUCTION)
+      # - name: Install Composer dependencies
+      #   run: composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction
 
       # 4️⃣ Setup Node.js
       - name: Setup Node Modules
@@ -45,7 +45,7 @@ jobs:
       - name: Deploy to Server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ftp.profwalesulaiman.com
+          server: ftp.omolayoayokanmi.name.ng
           username: ${{ secrets.FTP_USERNAME_O }}
           password: ${{ secrets.FTP_PASSWORD_O }}
           local-dir: ./ # root of repo
