@@ -1,0 +1,16 @@
+# Redirect root requests to the production build in /dist
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+# if the request is for the root, send it to /dist/index.html
+
+RewriteRule ^$ /dist/index.html [L,R=302]
+
+# optional: serve existing files normally
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /dist/index.html [L]
+</IfModule>
