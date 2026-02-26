@@ -1,0 +1,60 @@
+name: Deploy Prof Wale Website
+
+on:
+  push:
+    branches:
+      - main # Change if you want another branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Setup PHP 8.4 + Composer
+      - name: Setup PHP 8.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          tools: composer:v2
+          extensions: mbstring, bcmath, pdo, mysqli
+          coverage: none
+
+      # 3️⃣ Install Composer dependencies (PRODUCTION)
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction
+
+      # 4️⃣ Setup Node.js
+      - name: Setup Node Modules
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      # 5️⃣ Install frontend dependencies
+      - name: Install NPM dependencies
+        run: npm ci
+
+      # 6️⃣ Build Inertia / React assets
+      - name: Build frontend assets
+        run: npm run build
+
+      - name: Deploy to Server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftp.profwalesulaiman.com
+          username: ${{ secrets.FTP_USERNAME_O }}
+          password: ${{ secrets.FTP_PASSWORD_O }}
+          local-dir: ./ # root of repo
+          server-dir: ./ # root folder on server
+          delete: false
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/node_modules/**
+            **/tests/**
+            .env
+            public/storage/**
